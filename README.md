@@ -2,6 +2,31 @@
 Прошивка лампочки под esphome
 Стандартный компонент с ошибками, не переключается на белый свет. вместо него использовал
 https://git.kolosowscy.pl/homeassistant/esphome-hardware/-/tree/10d9f14fe8e9185eab9cc4ed9f239e3e4a0e0203/custom_components/sm2135
+Ток драйвера прописан жестко в коде, справить в sm2135.cpp:
+```
+  if (this->update_channel_ == 3 || this->update_channel_ == 4) {
+    // No color so must be Cold/Warm
+    data[0] = SM2135_ADDR_MC;
+    data[1] = SM2135_45MA;
+    data[2] = SM2135_CW;
+    this->write_buffer_(data, 3);
+    delay(1);
+    data[0] = SM2135_ADDR_C;
+    data[1] = this->pwm_amounts_[4];  //4  Warm
+    data[2] = this->pwm_amounts_[3];  //3  Cold
+    this->write_buffer_(data, 3);
+	delay(2);
+  } else {
+    // Color
+    data[0] = SM2135_ADDR_MC;
+    data[1] = SM2135_20MA;
+    data[2] = SM2135_RGB;
+    data[3] = this->pwm_amounts_[1];  // Green
+    data[4] = this->pwm_amounts_[0];  // Red
+    data[5] = this->pwm_amounts_[2];  // Blue
+    this->write_buffer_(data, 6);
+	delay(2);
+```
 
 ```
 substitutions:
