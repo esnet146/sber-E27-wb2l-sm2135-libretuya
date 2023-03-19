@@ -3,6 +3,8 @@
 Стандартный компонент с ошибками, не переключается на белый свет. вместо него использовал
 https://git.kolosowscy.pl/homeassistant/esphome-hardware/-/tree/10d9f14fe8e9185eab9cc4ed9f239e3e4a0e0203/custom_components/sm2135
 Ток драйвера прописан жестко в коде, справить в sm2135.cpp:
+прилагается[sm2135.zip](https://github.com/esnet146/sber-E27-wb2l-sm2135-libretuya/files/11011953/sm2135.zip)
+
 ```
   if (this->update_channel_ == 3 || this->update_channel_ == 4) {
     // No color so must be Cold/Warm
