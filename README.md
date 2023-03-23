@@ -94,23 +94,23 @@ output:
   - platform: sm2135
     id: output_red
     channel: 2
-    max_power: 0.8
+    max_power: 0.4
   - platform: sm2135
     id: output_green
     channel: 0
-    max_power: 0.8
+    max_power: 0.4
   - platform: sm2135
     id: output_blue
     channel: 1
-    max_power: 0.8
+    max_power: 0.4
   - platform: sm2135
     id: output_cold_white
     channel: 3
-    max_power: 1
+    max_power: 0.6
   - platform: sm2135
     id: output_warm_white
     channel: 4
-    max_power: 1
+    max_power: 0.6
 
 light:
   - platform: rgbww
