@@ -65,8 +65,8 @@ sensor:
     name: uptime_sensor.$board_name
 
 sm2135:
-  data_pin: P8
-  clock_pin: P7
+  data_pin: P7
+  clock_pin: P8
   cw_current: 35mA
   rgb_current: 20mA
 
