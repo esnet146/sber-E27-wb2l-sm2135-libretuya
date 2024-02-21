@@ -1,11 +1,6 @@
 # sber-E27-wb2l-sm2135-libretuya
 **Прошивка лампочки под esphome.**
 
-Стандартный компонент в esphome пока с ошибками, не переключается на белый свет.
-
-До принятия PR https://github.com/esphome/esphome/pull/3850
-используем external_components
-
 ```
 substitutions:
   board_name: sb-e27-1
@@ -13,29 +8,20 @@ substitutions:
 esphome:
   name: $board_name
   project:
-    name: "SberE27.LibreTuya"
-    version: "WB2L"
-  comment: "Sber E27"
+    name: "SBDV-0019.WB2L"
+    version: "BK7231T"
+  comment: "детская, люстра"
 
-libretuya:
+bk72xx:
   board: wb2l
-#  board: generic-bk7231t-qfn32-tuya
   framework:
     version: dev
-
-external_components:
-  - source: github://pr#3850
-    components: [ sm2135 ]
-
-
-
 preferences:
   flash_write_interval: 1min
 
 api:
   encryption:
     key: !secret keyapi 
-  reboot_timeout: 0s
 
 ota:
   password: !secret passwordota
@@ -53,16 +39,10 @@ wifi:
     ssid: "$board_name Hotspot"
     password: !secret password1
 
+
 button:
   - platform: restart
     name: Reset.$board_name
-
-
-sensor:
-  - platform: wifi_signal
-    name: WiFi_Signal.$board_name
-  - platform: uptime
-    name: uptime_sensor.$board_name
 
 sm2135:
   data_pin: P7
@@ -108,5 +88,12 @@ light:
     constant_brightness: true
     restore_mode: RESTORE_AND_ON
     gamma_correct: false
-
+sensor:
+  - platform: wifi_signal
+    name: WiFi_Signal.$board_name
+  - platform: uptime
+    name: uptime_sensor.$board_name
+text_sensor:
+  - platform: version
+    name: Version.$board_name
 ```
